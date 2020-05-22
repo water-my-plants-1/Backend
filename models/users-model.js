@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs")
-const db = require("../database/config")
+const db = require("../data/config")
 
 async function add(user) {
 	// hash the password with a time complexity of 14
@@ -26,9 +26,16 @@ function findById(id) {
 		.first()
 }
 
+function remove(id) {
+	return db("users")
+		.where({ id })
+		.del();
+}
+
 module.exports = {
 	add,
 	find,
 	findBy,
 	findById,
+	remove
 }

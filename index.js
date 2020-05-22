@@ -1,7 +1,6 @@
 const express = require("express")
 const helmet = require("helmet")
 const cors = require("cors")
-const session = require("express-session")
 const cookieParser = require("cookie-parser")
 const usersRouter = require("./routes/users-router")
 const plantsRouter = require("./routes/plants-router")

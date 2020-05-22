@@ -14,8 +14,4 @@ router.get("/", restrict(), async (req, res, next) => {
 	}
 })
 
-router.
-
-router.
-
 module.exports = router

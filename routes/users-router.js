@@ -1,12 +1,12 @@
 const express = require("express")
-const Users = require("./users-model")
+const Users = require("../models/users-model")
 const restrict = require("../middleware/restrict")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const router = express.Router()
 
-router.get("/users", restrict(), async (req, res, next) => {
+router.get("/", restrict(), async (req, res, next) => {
 	try {
 		res.json(await Users.find())
 	} catch(err) {
@@ -62,6 +62,18 @@ router.post("/login", async (req, res, next) => {
 	} catch(err) {
 		next(err)
 	}
+})
+
+router.get("/logout", restrict(), (req, res, next) => {
+	req.session.destroy((err) => {
+		if (err) {
+			next(err)
+		} else {
+			res.json({
+				message: "Logged out",
+			})
+		}
+	})
 })
 
 module.exports = router

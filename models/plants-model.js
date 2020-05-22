@@ -1,8 +1,7 @@
 const bcrypt = require("bcryptjs")
-const db = require("../database/config")
+const db = require("../data/config")
 
 async function add(plant) {
-	// hash the password with a time complexity of 14
 	plant.password = await bcrypt.hash(plant.password, 14)
 
 	const [id] = await db("plants").insert(plant)
