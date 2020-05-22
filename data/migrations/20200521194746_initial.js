@@ -9,8 +9,8 @@ exports.up = async function(knex) {
 		table.increments()
 		table.text("nickname").notNull().unique()
         table.text("species").notNull()
-        table.text("h2oFrequency").notNull()
-        table.specificType()
+        table.integer("h2oFrequency").notNull()
+        table.specificType("plantImage", "image")
     })
 }
 
