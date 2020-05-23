@@ -19,11 +19,12 @@ function findBy(filter) {
 		.where(filter)
 }
 
-function findById(id) {
-	return db("users")
-		.select("id", "username")
-		.where({ id })
-		.first()
+async function findById(id) {
+	const user = await db("users")
+    	.where({ id })
+    	.first("username", "password", "phoneNumber")
+	
+	return { ...user }
 }
 
 function remove(id) {
