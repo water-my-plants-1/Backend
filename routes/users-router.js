@@ -12,9 +12,9 @@ router.get("/users", async (req, res, next) => {
   }
 })
 
-router.get("/user", async (req, res, next) => {
+router.get("/user/:id", async (req, res, next) => {
   try {
-    const user = await usersModel.findById(req.user.id)
+    const user = await usersModel.findById(req.params.id)
     res.json(user)
   } catch (err) {
     next(err)
