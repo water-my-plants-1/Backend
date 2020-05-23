@@ -23,7 +23,7 @@ router.get("/user", async (req, res, next) => {
 
 router.put("/user", async (req, res, next) => {
   try {
-    const user = await usersModel.update(req.body, req.user.id)
+    const user = await usersModel.update(req.body, req.session.user.id)
     res.json(user)
   } catch (err) {
     next(err)

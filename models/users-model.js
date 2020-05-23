@@ -27,6 +27,13 @@ async function findById(id) {
 	return { ...user }
 }
 
+const update = async (user, id) => {
+	await db("users")
+	  .where({ id })
+	  .update(user)
+	return findBy({id})
+  }
+
 function remove(id) {
 	return db("users")
 		.where({ id })
@@ -38,5 +45,6 @@ module.exports = {
 	find,
 	findBy,
 	findById,
+	update,
 	remove
 }
