@@ -8,18 +8,24 @@ const router = express.Router()
 
 router.post("/register", async (req, res, next) => {
 	try {
-		const { username } = req.body
-		const user = await Users.findBy({ username }).first()
+		const { username, password, phoneNumber } = req.body
+        const userUserName = await Users.findBy({ username }).first()
+        const userPhoneNumber = await Users.findBy({ phoneNumber }).first()
 
-		if (user) {
+		if (userUserName) {
 			return res.status(409).json({
 				message: "Username is already taken",
 			})
         }
+
+        if (userPhoneNumber) {
+			return res.status(409).json({
+				message: "Phone number is already taken",
+			})
+        }
         
-        const { password, phoneNumber } = req.body
         if ( username && password && phoneNumber ) {
-            const newUser = usersModel.add({ username, password, phoneNumber });
+            const newUser = await Users.add({ username, password, phoneNumber });
             return res.status(201).json(newUser)
         } else {
             res.status(500).json({ message: "Missing username, password, or phone number" })
