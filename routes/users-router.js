@@ -52,6 +52,7 @@ router.post("/login", async (req, res, next) => {
 			userRole: "normal",
 		}
 
+		req.session.user = user
 		const token = jwt.sign(tokenPayload, "secret key")
 
 		res.cookie("token", token)
