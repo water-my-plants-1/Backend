@@ -21,11 +21,11 @@ router.get("/user/plants", async (req, res, next) => {
 	}
   })
   
-  router.post("/", async (req, res, next) => {
+  router.post("/user", async (req, res, next) => {
 	try {
-	  const newSet = { reps: parseInt(req.body.reps), weight: parseInt(req.body.weight) }
-	  const set = await setsModel.add(newSet, req.params.id)
-	  res.status(201).json(set)
+	  const newPlant = { nickname: req.body.nickname, species: req.body.species, h2oFrequency: req.body.h2oFrequency, image_url: req.body.image_url }
+	  const plant = await Plants.add(newPlant, req.session.user.id)
+	  res.status(201).json(plant)
 	} catch (err) {
 	  next(err)
 	}

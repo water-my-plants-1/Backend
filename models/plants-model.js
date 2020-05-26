@@ -1,12 +1,12 @@
 const bcrypt = require("bcryptjs")
 const db = require("../data/config")
 
-async function add(plant) {
-	plant.password = await bcrypt.hash(plant.password, 14)
-
-	const [id] = await db("plants").insert(plant)
+const add = async (plant, user_id) => {
+	plant = { ...plant, user_id}
+	const pgReturn = process.env.NODE_ENV === "production" ? "id" : null
+	const [id] = await db("plants").insert(plant, pgReturn)
 	return findById(id)
-}
+  }
 
 function find(id) {
 	return db("plants").where("user_id", id)
