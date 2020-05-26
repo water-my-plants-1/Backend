@@ -8,8 +8,8 @@ async function add(plant) {
 	return findById(id)
 }
 
-function find() {
-	return db("plants").select("id", "nickname")
+function find(id) {
+	return db("plants").where("user_id", id)
 }
 
 function findBy(filter) {
@@ -20,7 +20,6 @@ function findBy(filter) {
 
 function findById(id) {
 	return db("plants")
-		.select("id", "nickname")
 		.where({ id })
 		.first()
 }
