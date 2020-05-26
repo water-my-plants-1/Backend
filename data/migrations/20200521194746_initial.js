@@ -11,7 +11,6 @@ exports.up = async function(knex) {
 		table.text("nickname").notNull().unique()
         table.text("species").notNull()
         table.integer("h2oFrequency").notNull()
-        table.specificType("plantImage", "image")
     })
 }
 
