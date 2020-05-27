@@ -33,11 +33,15 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:plant_id", async (req, res, next) => {
 	try {
+		const x = await Plants.findBy({ nickname: req.body.nickname })
+		if (x.length > 0) {
+			 return res.json({ message: "Nickname already exists" })
+		}
 		const plant = await Plants.update(req.body, req.params.plant_id)
 		if (req.session.user.id === plant.user_id) {
-			res.status(201).json(plant)
+			return res.status(201).json(plant)
 		} else {
-			res.json({ message: "That's not your plant." })
+			return res.json({ message: "That's not your plant." })
 		}
 
 	} catch (err) {
