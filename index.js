@@ -25,7 +25,7 @@ server.use(session({
 
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
-server.use("/", restrict(), plantsRouter)
+server.use("/user", restrict(), plantsRouter)
 
 server.use((err, req, res, next) => {
 	console.log(err)
