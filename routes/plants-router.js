@@ -50,7 +50,7 @@ router.delete("/:plant_id", async (req, res, next) => {
 		const plant = await Plants.findById(req.params.plant_id)
 		if (req.session.user.id === plant.user_id) {
 			await Plants.remove(req.params.plant_id)
-			res.status(204).json({ message: `set has been deleted` })
+			return res.status(204).json({ message: `Plant has been deleted` })
 		} else {
 			res.status(400).json({ message: "Could not delete another user's plant." })
 		}
