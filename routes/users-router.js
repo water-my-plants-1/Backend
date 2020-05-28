@@ -1,5 +1,6 @@
 const express = require("express")
 const usersModel = require("../models/users-model")
+const bcrypt = require("bcryptjs")
 
 const router = express.Router()
 
@@ -23,7 +24,8 @@ router.get("/user", async (req, res, next) => {
 
 router.put("/user", async (req, res, next) => {
   try {
-    const user = await usersModel.update(req.body, req.session.user.id)
+    const pass = await bcrypt.hash(req.body.password, 12)
+    const user = await usersModel.update({username: req.body.username, phoneNumber: req.body.phoneNumber, password: pass }, req.session.user.id)
     res.json(user)
   } catch (err) {
     next(err)
