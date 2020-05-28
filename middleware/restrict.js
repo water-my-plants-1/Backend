@@ -10,22 +10,23 @@ function restrict(role = "normal") {
 			if (!req.session || !req.session.user) {
 				return res.status(401).json(authError)
 			}
+			const { authorization } = req.headers;
 
-			const token = req.cookies.token
-			if (!token) {
-				return res.status(401).json(authError)
+			if (authorization) {
+				jwt.verify(authorization, "secret key", (err, decodedToken) => {
+					if (err) {
+						return res.status(401).json(authError)
+					} else {
+						req.decodedToken = decodedToken
+						next()
+					}
+				})
+			} else {
+				res.status(400).json({ message: "No credentials provided" })
 			}
 
-			jwt.verify(token, "secret key", (err, decodedPayload) => {
-				if (err || decodedPayload.userRole !== role) {
-					return res.status(401).json(authError)
-				}
 
-				req.token = decodedPayload
-				next()
-			})
-
-		} catch(err) {
+		} catch (err) {
 			next(err)
 		}
 	}
