@@ -33,5 +33,7 @@ Endpoints	Method	Body	Description
 /user/:plant_id	    GET 	Returns a single plant
 
 /user/	    POST { nickname, species, h2oFrequency, image_url } 	 Create a new plant
-/:plant_id      PUT { nickname, species, h2oFrequency, image_url }     Updates plant
-/:plant_id      DELETE      Deletes plant
+
+/user/:plant_id      PUT { nickname, species, h2oFrequency, image_url }     Updates plant
+
+/user/:plant_id      DELETE      Deletes plant
