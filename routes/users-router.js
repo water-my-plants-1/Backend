@@ -15,7 +15,7 @@ router.get("/users", async (req, res, next) => {
 
 router.get("/user", async (req, res, next) => {
   try {
-    const user = await usersModel.findById(req.session.user.id)
+    const user = await usersModel.findById(req.decodedToken.userId)
     res.json(user)
   } catch (err) {
     next(err)
@@ -34,7 +34,7 @@ router.put("/user", async (req, res, next) => {
 
 router.delete("/user", async (req, res, next) => {
   try {
-    const user = await usersModel.remove(req.session.user.id)
+    const user = await usersModel.remove(req.decodedToken.userId)
     res.json(user)
   } catch (err) {
     next(err)

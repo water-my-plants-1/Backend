@@ -11,6 +11,7 @@ function restrict(role = "normal") {
 			// 	return res.status(401).json(authError)
 			// }
 			const { authorization } = req.headers;
+			console.log("headers", res.headers)
 
 			if (authorization) {
 				jwt.verify(authorization, "secret key", (err, decodedToken) => {
