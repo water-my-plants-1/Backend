@@ -69,18 +69,4 @@ router.post("/login", async (req, res, next) => {
 	}
 })
 
-router.get("/logout", restrict(), (req, res, next) => {
-	req.session.destroy((err) => {
-		if (err) {
-			next(err)
-		} else {
-			res.json({
-				message: "Logged out",
-			})
-		}
-	})
-})
-
-router.get
-
 module.exports = router

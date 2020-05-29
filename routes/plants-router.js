@@ -38,7 +38,7 @@ router.put("/:plant_id", async (req, res, next) => {
 			 return res.json({ message: "Nickname already exists" })
 		}
 		const plant = await Plants.update(req.body, req.params.plant_id)
-		if (req.session.user.id === plant.user_id) {
+		if (req.decodedToken.userId === plant.user_id) {
 			return res.status(201).json(plant)
 		} else {
 			return res.json({ message: "That's not your plant." })
@@ -52,7 +52,7 @@ router.put("/:plant_id", async (req, res, next) => {
 router.delete("/:plant_id", async (req, res, next) => {
 	try {
 		const plant = await Plants.findById(req.params.plant_id)
-		if (req.session.user.id === plant.user_id) {
+		if (req.decodedToken.userId === plant.user_id) {
 			await Plants.remove(req.params.plant_id)
 			return res.status(204).json({ message: `Plant has been deleted` })
 		} else {
