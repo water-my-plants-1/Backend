@@ -10,7 +10,7 @@ exports.up = async function (knex) {
         table.increments()
         table.text("nickname").notNull().unique()
         table.text("species").notNull()
-        table.integer("h2oFrequency").notNull()
+        table.string("h2oFrequency").notNull()
         table.string("image_url")
         table
             .integer("user_id")

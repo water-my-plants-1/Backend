@@ -5,7 +5,6 @@ const router = express.Router({ mergeParams: true })
 
 router.get("/plants", async (req, res, next) => {
 	try {
-		console.log("userid", req.decodedToken.userId)
 		const plants = await Plants.find(req.decodedToken.userId)
 		res.json(plants)
 	} catch (err) {
@@ -24,7 +23,7 @@ router.get("/:plant_id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
 	try {
-		const newPlant = { nickname: req.body.nickname, species: req.body.species, h2oFrequency: req.body.h2oFrequency, image_url: req.body.image_url, user_id: req.session.user.id }
+		const newPlant = { nickname: req.body.nickname, species: req.body.species, h2oFrequency: req.body.h2oFrequency, image_url: req.body.image_url, user_id: req.decodedToken.userId }
 		const plant = await Plants.add(newPlant, req.decodedToken.userId)
 		res.status(201).json(plant)
 	} catch (err) {
