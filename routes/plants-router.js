@@ -6,7 +6,7 @@ const router = express.Router({ mergeParams: true })
 router.get("/plants", async (req, res, next) => {
 	try {
 		const plants = await Plants.find(req.decodedToken.userId)
-		res.json(plants)
+		return res.json(plants)
 	} catch (err) {
 		next(err)
 	}
@@ -15,7 +15,7 @@ router.get("/plants", async (req, res, next) => {
 router.get("/:plant_id", async (req, res, next) => {
 	try {
 		const plant = await Plants.findById(req.params.plant_id)
-		res.json(plant)
+		return res.json(plant)
 	} catch (err) {
 		next(err)
 	}
@@ -25,7 +25,7 @@ router.post("/", async (req, res, next) => {
 	try {
 		const newPlant = { nickname: req.body.nickname, species: req.body.species, h2oFrequency: req.body.h2oFrequency, image_url: req.body.image_url, user_id: req.decodedToken.userId }
 		const plant = await Plants.add(newPlant, req.decodedToken.userId)
-		res.status(201).json(plant)
+		return res.status(201).json(plant)
 	} catch (err) {
 		next(err)
 	}
@@ -56,7 +56,7 @@ router.delete("/:plant_id", async (req, res, next) => {
 			await Plants.remove(req.params.plant_id)
 			return res.status(204).json({ message: `Plant has been deleted` })
 		} else {
-			res.status(400).json({ message: "Could not delete another user's plant." })
+			return res.status(400).json({ message: "Could not delete another user's plant." })
 		}
 
 	} catch (err) {

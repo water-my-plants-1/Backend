@@ -28,7 +28,7 @@ router.post("/register", async (req, res, next) => {
             const newUser = await Users.add({ username, password, phoneNumber });
             return res.status(201).json(newUser)
         } else {
-            res.status(500).json({ message: "Missing username, password, or phone number" })
+            return res.status(500).json({ message: "Missing username, password, or phone number" })
 		}
 		
 	} catch(err) {
