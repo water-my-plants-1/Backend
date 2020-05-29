@@ -16,12 +16,6 @@ server.use(cors())
 server.use(helmet())
 server.use(express.json())
 server.use(cookieParser())
-server.use(session({
-	name: "sess",
-	resave: false,
-	saveUninitialized: false,
-	secret: "keep it secret, keep it safe",
-}))
 
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
