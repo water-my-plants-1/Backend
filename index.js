@@ -2,7 +2,6 @@ require("dotenv").config()
 const express = require("express")
 const helmet = require("helmet")
 const cors = require("cors")
-const session = require("express-session")
 const cookieParser = require("cookie-parser")
 const usersRouter = require("./routes/users-router")
 const plantsRouter = require("./routes/plants-router")
@@ -16,16 +15,10 @@ server.use(cors())
 server.use(helmet())
 server.use(express.json())
 server.use(cookieParser())
-server.use(session({
-	name: "sess",
-	resave: false,
-	saveUninitialized: false,
-	secret: "keep it secret, keep it safe",
-}))
 
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
-server.use("/", restrict(), plantsRouter)
+server.use("/user", restrict(), plantsRouter)
 
 server.use((err, req, res, next) => {
 	console.log(err)
