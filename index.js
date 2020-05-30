@@ -7,10 +7,9 @@ const usersRouter = require("./routes/users-router")
 const plantsRouter = require("./routes/plants-router")
 const authRouter = require("./routes/auth-router")
 const restrict = require("./middleware/restrict")
-const app = express()
 
 const server = express()
-const port = process.env.PORT || 5000
+const port = 5000
 
 server.use(cors())
 server.use(helmet())
@@ -22,7 +21,6 @@ server.use("/", restrict(), usersRouter)
 server.use("/user", restrict(), plantsRouter)
 
 server.use((err, req, res, next) => {
-	console.log(err)
 	res.status(500).json({
 		message: "Something went wrong",
 	})
@@ -34,4 +32,4 @@ if (!module.parent) {
 	})
   }
 
-module.exports = app
+module.exports = server

@@ -1,6 +1,5 @@
 const express = require("express")
 const Users = require("../models/users-model")
-const restrict = require("../middleware/restrict")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 

@@ -1,11 +1,16 @@
 const request = require("supertest")
 const db = require("../../data/config")
 const server = require("../../index")
-console.log(process.env.NODE_ENV)
 
 beforeEach(async () => {
     await db("users").truncate()
+    await db("plants").truncate()
     await db.seed.run()
+})
+
+afterEach(async () => {
+    await db("users").truncate()
+    await db("plants").truncate()
 })
 
 describe("auth router", () => {
