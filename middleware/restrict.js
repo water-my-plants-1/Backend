@@ -7,9 +7,6 @@ function restrict(role = "normal") {
 		}
 
 		try {
-			// if (!req.session || !req.session.user) {
-			// 	return res.status(401).json(authError)
-			// }
 			const { authorization } = req.headers;
 
 			if (authorization) {
