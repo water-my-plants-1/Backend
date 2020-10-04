@@ -12,13 +12,13 @@ exports.up = async function (knex) {
         table.text("species").notNull()
         table.string("h2oFrequency").notNull()
         table.string("image_url")
-        table
-            .integer("user_id")
-            .notNullable()
-            .references("id")
-            .inTable("users")
-            .onDelete("CASCADE")
-            .onUpdate("CASCADE")
+        // table
+        //     .integer("user_id")
+        //     .notNullable()
+        //     .references("id")
+        //     .inTable("users")
+        //     .onDelete("CASCADE")
+        //     .onUpdate("CASCADE")
     })
 }
 
