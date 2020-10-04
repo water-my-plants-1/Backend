@@ -28,5 +28,4 @@ function restrict(role = "normal") {
 		}
 	}
 }
-
 module.exports = restrict
