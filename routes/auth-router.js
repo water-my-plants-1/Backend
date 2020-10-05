@@ -68,4 +68,15 @@ router.post("/login", async (req, res, next) => {
 	}
 })
 
+router.delete("/logout", async (req, res, next) => {
+	try {
+		res.cookie("token", null)
+		res.json({
+			token: null,
+		})
+	} catch(err) {
+		next(err)
+	}
+})
+
 module.exports = router
