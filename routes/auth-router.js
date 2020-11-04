@@ -58,21 +58,9 @@ router.post("/login", async (req, res, next) => {
 
 		const token = jwt.sign(tokenPayload, "secret key")
 
-		res.cookie("token", token)
 		res.json({
 			message: `Welcome ${user.username}!`,
 			token: token,
-		})
-	} catch(err) {
-		next(err)
-	}
-})
-
-router.delete("/logout", async (req, res, next) => {
-	try {
-		res.cookie("token", null)
-		res.json({
-			token: null,
 		})
 	} catch(err) {
 		next(err)
