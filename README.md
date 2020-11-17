@@ -10,7 +10,7 @@ Endpoint	Method	Body	Description
 
 /login	POST	{ email , password }	Log in an existing user
 
-/logout	GET	    Logout an existing user
+/logout	DELETE	    Logout an existing user
 
 
 Users
@@ -18,9 +18,9 @@ Endpoint	Method	Body	Description
 
 /users	GET	    Returns all users
 
-/user	GET `	Returns a single user (based on sessions)
+/user	GET `	Returns the logged in user
 
-/user	PUT	{ username , password, phoneNumber }	Returns the new user - make sure to input all three even if the data stays static
+/user	PUT	{ username , password, phoneNumber }	Returns the new user
 
 /user   DELETE      Deletes the user
 
