@@ -12,11 +12,11 @@ router.post("/register", async (req, res, next) => {
         const userPhoneNumber = await Users.findBy({ phoneNumber }).first()
 
 		if (userUserName) {
-			return res.send('Username is already taken!')
+			return res.send('Username is already taken!').status(409)
         }
 
         if (userPhoneNumber) {
-			return res.json('Phone number is already taken!')
+			return res.json('Phone number is already taken!').status(409)
         }
         
         if ( username && password && phoneNumber ) {
