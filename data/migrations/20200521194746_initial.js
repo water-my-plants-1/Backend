@@ -9,7 +9,7 @@ exports.up = async function (knex) {
     await knex.schema.createTable("plants", (table) => {
         table.increments()
         table.text("nickname").notNull().unique()
-        table.text("species").notNull()
+        table.text("common_name").notNull()
         table.string("h2oFrequency").notNull()
         table.string("image_url")
         table
