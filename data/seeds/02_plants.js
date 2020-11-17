@@ -9,6 +9,6 @@ exports.seed = async function(knex) {
     { id: 6, nickname: "Dancing Lady", common_name: "Orchid", h2oFrequency: "3", user_id: 2 },
     { id: 7, nickname: "Tree", common_name: "Fern", h2oFrequency: "7", user_id: 3 },
     { id: 8, nickname: "Uomo", common_name: "Basil", h2oFrequency: "1", user_id: 3 },
-    { id: 8, nickname: "Red", common_name: "Tomato", h2oFrequency: "1", user_id: 3 },
+    { id: 9, nickname: "Red", common_name: "Tomato", h2oFrequency: "1", user_id: 3 },
   ])
 };  
