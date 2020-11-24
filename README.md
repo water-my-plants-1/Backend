@@ -12,7 +12,7 @@ Auth
 Endpoint	| Method	| Body	| Description
 ----------|---------|-------|------------
 /register	| POST	| { username , password , phoneNumber }	| Sign up a new user
-/login	| POST	| { email , password }	| Log in an existing user
+/login	| POST	| { username , password }	| Log in an existing user
 
 
 Users
