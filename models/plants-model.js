@@ -5,7 +5,7 @@ const add = async (plant, user_id) => {
 	plant = { ...plant, user_id }
 	const pgReturn = process.env.NODE_ENV === "production" ? "id" : null
 	const [id] = await db("plants").insert(plant, pgReturn)
-	return findById(await db("plants").insert(plant, user_id))
+	return findById(id, user_id)
 }
 
 function find(id) {
