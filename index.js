@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser")
 const usersRouter = require("./routes/users-router")
 const plantsRouter = require("./routes/plants-router")
 const authRouter = require("./routes/auth-router")
-const remindersRouter = require("./routes/reminders-router")
+// const remindersRouter = require("./routes/reminders-router")
 const restrict = require("./middleware/restrict")
 
 const server = express()
@@ -20,7 +20,7 @@ server.use(cookieParser())
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
 server.use("/user", restrict(), plantsRouter)
-server.use("/user/plant", restrict(), remindersRouter)
+// server.use("/user/plant", restrict(), remindersRouter)
 
 server.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
