@@ -1,3 +1,4 @@
+const { request } = require("express")
 const express = require("express")
 const Plants = require("../models/plants-model")
 
@@ -15,7 +16,11 @@ router.get("/plants", async (req, res, next) => {
 router.get("/:plant_id", async (req, res, next) => {
 	try {
 		const plant = await Plants.findById(req.params.plant_id)
-		return res.json(plant)
+		if (req.decodedToken.userId === plant.user_id) {
+			return res.status(200).json(plant)
+		} else {
+			return res.json({ message: "That's not your plant." })
+		}
 	} catch (err) {
 		next(err)
 	}
