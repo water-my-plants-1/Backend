@@ -4,7 +4,7 @@ const db = require("../data/config")
 const add = async (plant, user_id) => {
 	plant = { ...plant, user_id }
 	const pgReturn = process.env.NODE_ENV === "production" ? "id" : null
-	const [id] = await db("plants").insert(plant)
+	const [id] = await db("plants").insert(plant, pgReturn)
 	return findById(id)
 }
 

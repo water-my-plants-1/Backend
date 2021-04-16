@@ -20,6 +20,25 @@ exports.up = async function (knex) {
             .onDelete("CASCADE")
             .onUpdate("CASCADE")
     })
+
+    // await knex.schema.createTable("reminders", (table) => {
+    //     table.increments()
+    //     table.text("reminder_message").notNull()
+    //     table
+    //         .string("h2o_frequency")
+    //         .notNullable()
+    //         .references("h2oFrequency")
+    //         .inTable("plants")
+    //         .onDelete("CASCADE")
+    //         .onUpdate("CASCADE")
+    //     table
+    //         .integer("user_id")
+    //         .notNullable()
+    //         .references("id")
+    //         .inTable("users")
+    //         .onDelete("CASCADE")
+    //         .onUpdate("CASCADE")
+    // })
 }
 
 exports.down = async function (knex) {

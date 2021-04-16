@@ -56,7 +56,7 @@ router.post("/login", async (req, res, next) => {
 			userRole: "normal",
 		}
 
-		const token = jwt.sign(tokenPayload, "secret key")
+		const token = jwt.sign(tokenPayload, process.env.SECRET_KEY)
 
 		res.cookie("token", token)
 		res.json({
