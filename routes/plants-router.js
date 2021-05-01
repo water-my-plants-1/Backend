@@ -38,6 +38,10 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:plant_id", async (req, res, next) => {
 	try {
+		const nickname = await Plants.findBy({ nickname: req.body.nickname })
+		if (nickename.length > 0) {
+			 return res.json({ message: "Nickname already exists" })
+		}
 		const plant = await Plants.update(req.body, req.params.plant_id)
 		if (req.decodedToken.userId === plant.user_id) {
 			return res.status(201).json(plant)
