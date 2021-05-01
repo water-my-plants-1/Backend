@@ -10,18 +10,17 @@ const authRouter = require("./routes/auth-router")
 const restrict = require("./middleware/restrict")
 
 const server = express()
-const port = 5000
 
 server.use(cors())
 server.use(helmet())
 server.use(express.json())
 server.use(cookieParser())
 
-server.options('*', cors())
 server.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	next();
 });
+server.options('*', cors())
 
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
