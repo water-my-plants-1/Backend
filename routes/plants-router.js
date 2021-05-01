@@ -30,6 +30,7 @@ router.post("/", async (req, res, next) => {
 	try {
 		const newPlant = { nickname: req.body.nickname, common_name: req.body.common_name, h2oFrequency: req.body.h2oFrequency, image_url: req.body.image_url, user_id: req.decodedToken.userId }
 		const plant = await Plants.add(newPlant, req.decodedToken.userId)
+		console.log("plant", plant)
 		return res.status(201).json(plant)
 	} catch (err) {
 		next(err)
@@ -43,6 +44,7 @@ router.put("/:plant_id", async (req, res, next) => {
 			 return res.json({ message: "Nickname already exists" })
 		}
 		const plant = await Plants.update(req.body, req.params.plant_id)
+		console.log("plant", plant)
 		if (req.decodedToken.userId === plant.user_id) {
 			return res.status(201).json(plant)
 		} else {
