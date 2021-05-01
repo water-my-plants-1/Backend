@@ -17,15 +17,16 @@ server.use(helmet())
 server.use(express.json())
 server.use(cookieParser())
 
+server.options('*', cors())
+server.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	next();
+});
+
 server.use("/", authRouter)
 server.use("/", restrict(), usersRouter)
 server.use("/user", restrict(), plantsRouter)
 // server.use("/user/plant", restrict(), remindersRouter)
-
-server.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	next();
-  });
 
 server.use((err, req, res, next) => {
 	res.status(500).json({
