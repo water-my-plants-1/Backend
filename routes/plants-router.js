@@ -33,7 +33,7 @@ router.post("/", async (req, res, next) => {
 		console.log("plant", plant)
 		return res.status(201).json(plant)
 	} catch (err) {
-		next()
+		next(err)
 	}
 })
 
@@ -52,7 +52,7 @@ router.put("/:plant_id", async (req, res, next) => {
 		}
 
 	} catch (err) {
-		next()
+		next(err)
 	}
 })
 
