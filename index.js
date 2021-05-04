@@ -14,12 +14,14 @@ const server = express();
 
 server.use(cors());
 server.options('*', cors());
-server.use(bodyParser.json());
+
+server.use(express.json());
+
 server.use(bodyParser.urlencoded({
 	extended: true
-}));
+}));server.use(bodyParser.json());
+
 server.use(helmet());
-server.use(express.json());
 server.use(cookieParser());
 
 server.use(function(req, res, next) {
