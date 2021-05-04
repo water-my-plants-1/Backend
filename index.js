@@ -17,8 +17,8 @@ server.use(express.json())
 server.use(cookieParser())
 
 server.use((req, res, next) => {
-	req.header('Access-Control-Allow-Origin', '*');
-	req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header('Access-Control-Allow-Origin', 'https://water-my-plants-frontend-wilcoxva.vercel.app');
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
 server.options('*', cors())
