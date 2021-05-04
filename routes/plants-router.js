@@ -33,6 +33,7 @@ router.post("/", async (req, res, next) => {
 		console.log("plant", plant)
 		return res.status(201).json(plant)
 	} catch (err) {
+		console.log(err.response.data)
 		next(err)
 	}
 })
@@ -52,6 +53,7 @@ router.put("/:plant_id", async (req, res, next) => {
 		}
 
 	} catch (err) {
+		console.log(err.response.data)
 		next(err)
 	}
 })
