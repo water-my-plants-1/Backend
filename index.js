@@ -13,13 +13,15 @@ const restrict = require("./middleware/restrict");
 const server = express();
 
 server.use(cors());
-server.options('*', cors());
+server.options('/user/:plant_id', cors());
 
 server.use(express.json());
 
 server.use(bodyParser.urlencoded({
 	extended: true
-}));server.use(bodyParser.json());
+}));
+
+server.use(bodyParser.json());
 
 server.use(helmet());
 server.use(cookieParser());
