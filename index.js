@@ -13,7 +13,6 @@ const restrict = require("./middleware/restrict");
 const server = express();
 
 server.use(cors());
-server.options('*', cors());
 
 server.use(express.json());
 
@@ -25,14 +24,6 @@ server.use(bodyParser.json());
 
 server.use(helmet());
 server.use(cookieParser());
-
-server.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "https://water-my-plants-frontend-wilcoxva.vercel.app");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-	res.header("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
-	res.header("Access-Control-Allow-Credentials", true);
-	next();
-});
 
 server.use("/", authRouter);
 server.use("/", restrict(), usersRouter);
